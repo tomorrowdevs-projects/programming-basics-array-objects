@@ -12,7 +12,7 @@ In this case, you will build a **Cinema Booking Manager**, using all the basics 
 
 In order to achieve that, youl will be guided into different steps and tasks, composed by a combination of theory and coding.
 
-
+Additionally, you will learn how to use the **command line** in a professional way.
 
 # 🚀 **[Jump to the Learning Path!](LEARNING-PATH.md)** 💻
 

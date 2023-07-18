@@ -64,6 +64,7 @@ Code these exercises to capture the concepts you just learned:
 - [ ] Watch ["A Developer Mindset"](https://my.tomorrowdevs.com/courses/tomorrowdevs/lectures/21789055?preview=admin)
 - [ ] Watch ["Real Project Analysis"](https://my.tomorrowdevs.com/courses/tomorrowdevs/lectures/24566461)
 - [ ] Watch ["Mock Interview"](https://my.tomorrowdevs.com/courses/tomorrowdevs/lectures/32525520)
+- [ ] Study [how to use the command line](https://github.com/jlevy/the-art-of-command-line)
 - [ ]  Publish 3 posts on Linkedin about what you’re learning and present demos (using videos or screenshots) about your current projects
 
 <hr>
