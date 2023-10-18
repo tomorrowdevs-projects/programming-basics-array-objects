@@ -1,17 +1,10 @@
 function createDeck() {
-    const cardDeck = [];
-
     const cardValue = [2, 3, 4, 5, 6, 7, 8, 9, 
                       "T", "J", "Q", "K", "A"];
 
     const cardSuit = ["s", "h", "d", "c"];
-
-    for (const suit of cardSuit) {
-
-        for (let j = 0; j < cardValue.length; j++) {
-            cardDeck.push(cardValue[j] + suit);
-        }
-    }
+    
+    const cardDeck = cardValue.flatMap( (value) => cardSuit.map( (suit) => value + suit ) );
 
     return cardDeck;
 }
