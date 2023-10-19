@@ -1,8 +1,8 @@
 function checkSublist(list1, list2) {
-    if (list2 == "") return true;
+    if (list2.length === 0) return true;
 
     // Check if the second list items are included or not in the first list and also automatically exclude all the lists longer than the first
-    if ( list2.every(isIncluded) ) { 
+    if ( list2.every(item => list1.includes(item)) ) { 
         
         if (list1.length === list2.length) return true; // This case validate identical list
         
@@ -16,10 +16,6 @@ function checkSublist(list1, list2) {
     }
     
     return false;
-
-    function isIncluded(item) {
-       return list1.includes(item);
-    }
 }
 
 const list1 = [1, 2, 3, 4];
