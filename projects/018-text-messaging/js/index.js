@@ -3,33 +3,22 @@ const prompt = require('prompt-sync')({sigint: true});
 const message = prompt("Please enter a message: => ").toUpperCase().split(""); // Transform the user input in an array.
 
 const numericKeypad = { // Create an object with array as property values.
-    1 : [".", ",", "?", "!", ":"],
-    2 : ["A", "B", "C"],
-    3 : ["D", "E", "F"],
-    4 : ["G", "H", "I"],
-    5 : ["J", "K", "L"],
-    6 : ["M", "N", "O"],
-    7 : ["P", "Q", "R", "S"],
-    8 : ["T", "U", "V"],
-    9 : ["W", "X", "Y", "Z"],
-    0 :[" "],
+    "." : 1,
+    "," : 11,
+    "?" : 111,
+    "!" : 1111,
+    ":" : 11111,
+    "A" : 2, "B" : 22, "C" : 222,
+    "D" : 3, "E" : 33, "F" : 333,
+    "G" : 4, "H" : 44, "I" : 444,
+    "J" : 5, "K" : 55, "L" : 555,
+    "M" : 6, "N" : 66, "O" : 666,
+    "P" : 7, "Q" : 77, "R" : 777, "S" : 7777,
+    "T" : 8, "U" : 88, "V" : 888,
+    "W" : 9, "X" : 99, "Y" : 999, "Z" : 9999,
+    " " : 0,
 }
 
-const keypadSequence = [];
-
-message.forEach( (letter) =>  {
-
-    for (let numericKey in numericKeypad) {
-        const letterSet = numericKeypad[numericKey];
-
-        if ( letterSet.includes(letter) ) {
-            const letterSetPosition = letterSet.indexOf(letter) + 1;
-
-            for (let i = 0; i < letterSetPosition; i++) {
-                keypadSequence.push(numericKey);
-            }
-        }
-    }
-})
+const keypadSequence = message.map( (letter) => numericKeypad[letter] );
 
 console.log("You pressed this sequence of digit: => " + keypadSequence.join(""));
