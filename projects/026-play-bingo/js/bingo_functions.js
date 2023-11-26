@@ -171,4 +171,4 @@ function checkWinningBingoCard(bingoCard) {
 
 // console.log(`Extracted number list:\n${extractedNumbers.join("; ")}`);
 
-export {createBingoCard, displayBingoCard, markBingoCard, checkWinningBingoCard};
+module.exports = {createBingoCard, displayBingoCard, markBingoCard, checkWinningBingoCard};

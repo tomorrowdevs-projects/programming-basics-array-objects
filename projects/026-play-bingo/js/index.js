@@ -1,4 +1,4 @@
-import {createBingoCard, displayBingoCard, markBingoCard, checkWinningBingoCard} from "./bingo_functions.js";
+const {createBingoCard, displayBingoCard, markBingoCard, checkWinningBingoCard} = require("./bingo_functions");
 
 function randomSort(array) {
     const elements = array.length;
@@ -7,6 +7,8 @@ function randomSort(array) {
 
         [ array[randomIndex], array[i] ] = [ array[i], array[randomIndex] ]
     }
+
+    return array;
 }
 
 // Simulate games
@@ -66,3 +68,5 @@ numbersCalls.forEach( number => averageCalls += number);
 console.log(`Average calls for ${games} games: ${averageCalls / games}\n`); // calculate the average of the calls
 console.log(`Minimum calls for ${games} games: ${numbersCalls.shift()}\n`); // remove and return the first element of the list, as he correspond to the minimum
 console.log(`Maximum calls for ${games} games: ${numbersCalls.pop()}\n`); // remove and return the last element of the list, as he correspond to the maximum
+
+module.exports = randomSort;
