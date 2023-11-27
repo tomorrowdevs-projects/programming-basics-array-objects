@@ -18,7 +18,6 @@ describe('Testing the randomSort function', () => {
         const sortedArray = randomSort(array);
         expect(sortedArray).toContain(-10);
         expect(sortedArray).not.toBe([1, 2, 3, 4, 0, -2, -10]);
-        // console.log(sortedArray);
     });
 
     test('to work with floats and strings', () => {
@@ -39,12 +38,14 @@ describe('Testing the randomSort function', () => {
         expect(randomSort(array)).toBe(array); // [] remain []
         expect(Object.is(randomSort(array), array)).toBe(true); // sorted in place, same reference
  
-        expect(randomSort(emptyArray)).toHaveLength(1); //
-        expect(randomSort(emptyArray)).toBe(emptyArray);
+        expect(randomSort(emptyArray)).toHaveLength(1); // 1 empty item
+        expect(randomSort(emptyArray)).toBe(emptyArray); // [,] remain [,]
 
         expect(randomSort(sparseArray)).toHaveLength(4);
         expect(randomSort(sparseArray)).toContain(undefined); // when sorted, the empty item become typeof undefined
 
-        expect(randomSort(nestedArray)).not.toBe([ 1, "hello", [ -2, [0, "dev"], 9.9], "end"]);
+        const sortedNestedArray = randomSort(nestedArray);
+        expect(randomSort(sortedNestedArray)).not.toBe([ 1, "hello", [ -2, [0, "dev"], 9.9], "end"]);
+        console.log(sortedNestedArray); // nested array items are not sorted
     });
 })

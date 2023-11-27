@@ -3,7 +3,7 @@ const {createBingoCard, displayBingoCard, markBingoCard, checkWinningBingoCard} 
 function randomSort(array) {
     const elements = array.length;
     for (let i = elements - 1; i > 0; --i ) {
-        const randomIndex = Math.floor(Math.random() * i + 1);
+        const randomIndex = Math.floor(Math.random() * (i + 1));
 
         [ array[randomIndex], array[i] ] = [ array[i], array[randomIndex] ]
     }
