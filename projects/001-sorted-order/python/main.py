@@ -4,7 +4,11 @@ Your program should continue reading values until the user enters 0.
 """
 
 
-def get_list():
+def get_list() -> list[int]:
+    """
+    Creates a list of numbers by user input
+    return: list of integers
+    """
     numbers_list = []
 
     while True:
@@ -33,7 +37,13 @@ Use either the sort method or the sorted function to sort the array.
 """
 
 
-def sorted_order(numbers):
+def sorted_order(numbers) -> None:
+    """
+    Sorts the list of user numbers
+
+    param numbers: a list of integers
+    return: display on the screen the numbers in ascending order
+    """
     numbers.sort()
     [print(number) for number in numbers]
 
