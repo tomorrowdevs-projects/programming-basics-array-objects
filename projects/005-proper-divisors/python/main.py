@@ -2,7 +2,7 @@ def proper_divisor(integer):
     divisors = []
     i = 1
 
-    while i <= integer:
+    while i < integer:
 
         if integer % i == 0:
             divisors.append(i)
