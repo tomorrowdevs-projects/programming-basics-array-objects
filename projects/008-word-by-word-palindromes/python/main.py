@@ -3,24 +3,20 @@ import string
 
 def get_string(words):
     list_of_words = ""
-    character = 0
 
-    while len(words) > character:
+    for word in words:
 
-        if words[character] not in string.punctuation:
-            list_of_words += words[character]
+        for character in word:
 
-        elif character + 1 < len(words) and words[character + 1] == "'" and words[character + 1] == "’":
-            list_of_words += words[character]
+            if character in string.ascii_letters or character == "'" or character == "’" or character == " ":
+                list_of_words += character
 
-        character += 1
-
-    return list_of_words.split()
+    return list_of_words
 
 
 def get_palindromes(user_string):
     is_palindrome = get_string(user_string)
-    result = 0
+    result = "It isn't word by word palindrome!"
 
     word_counter = 0
 
@@ -28,8 +24,7 @@ def get_palindromes(user_string):
 
         if is_palindrome[word_counter].lower() == is_palindrome[-(word_counter + 1)].lower():
             result = "It's word by word palindrome!"
-        else:
-            result = "It isn't word by word palindrome!"
+
         word_counter += 1
 
     return result
