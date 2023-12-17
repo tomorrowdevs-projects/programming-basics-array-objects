@@ -34,16 +34,19 @@ function perfectNumbers() {
 function main() {
     
     const userQuestion = parseInt(prompt('find out if your number is perfect: '))
-    
-    if (isPerfectNumber(userQuestion)) {
-        console.log(`the number ${userQuestion} is perfect`);
+    if (isNaN(userQuestion) || userQuestion <= 0) {
+        console.log('Please enter a valid positive integer.');
     } else {
-        console.log(`the number ${userQuestion} is not perfect`);
+        if (isPerfectNumber(userQuestion)) {
+            console.log(`the number ${userQuestion} is perfect`);
+        } else {
+            console.log(`the number ${userQuestion} is not perfect`);
+        }
+    
+    
+        const list = perfectNumbers();
+        console.log(`the perfect numbers fro 1 to 10000 are: ${list}`);
     }
-    
-    
-    const list = perfectNumbers();
-    console.log(`the perfect numbers fro 1 to 10000 are: ${list}`);
 }
 
 main();
