@@ -3,17 +3,13 @@ import string
 
 def get_string(words):
     list_of_words = ""
-    character = 0
 
-    while len(words) > character:
+    for word in words:
 
-        if words[character] not in string.punctuation:
-            list_of_words += words[character]
+        for character in word:
 
-        elif character + 1 < len(words) and words[character + 1] != "":
-            list_of_words += words[character]
-
-        character += 1
+            if character in string.ascii_letters or character == "'" or character == "’" or character == " ":
+                list_of_words += character
 
     return list_of_words.split()
 
