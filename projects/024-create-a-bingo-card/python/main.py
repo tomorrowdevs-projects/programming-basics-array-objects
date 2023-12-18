@@ -22,8 +22,8 @@ def card_generate():
         start += 15
         stop += 15
 
-
     return my_dict
+
 
 def main():
     card = card_generate()
@@ -31,10 +31,10 @@ def main():
     for number in range(5):
 
         for key, value in card.items():
-
             value.sort()
             print(f"{value[number]: <4}", end="")
         print()
+
 
 if __name__ == '__main__':
     main()
