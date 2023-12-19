@@ -55,7 +55,7 @@ Code these exercises to capture the concepts you just learned:
 - [ ] [Reverse lookup](./projects/016-reverse-lookup/)
 - [ ] [Text messaging](./projects/018-text-messaging/)
 - [ ] [Scrabble score](./projects/023-scrabble-score/)
-- [ ] [Create a Bingo card](./projects/024-create-a-bingo-card/)
+- [ ] [Create a Bingo card](projects/create_a_bingo_card/)
 - [ ] [Checking for a winning card](./projects/025-checking-for-a-winning-card/)
 - [ ] [Play Bingo](./projects/026-play-bingo/)
 
