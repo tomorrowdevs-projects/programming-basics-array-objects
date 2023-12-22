@@ -1,10 +1,10 @@
 'use strict';
 
 function getSingleWords() {
-    words.forEach(function (word) {
-        if (!wordsWithoutDuplicates.includes(word)) {
+    words.forEach(function (duplicateWord) {
+        if (!wordsWithoutDuplicates.includes(duplicateWord)) {
             // Check if the word is not present in this array
-            wordsWithoutDuplicates.push(word);
+            wordsWithoutDuplicates.push(duplicateWord);
         }
     });
 
