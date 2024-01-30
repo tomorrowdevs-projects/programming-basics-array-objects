@@ -14,19 +14,11 @@ def main():
 
     while True:
         key = input("Enter the key to add or press enter to quite: ")
-        try:
-            key = int(key)
-        except ValueError:
-            pass
 
         if key == "":
             break
 
         value = input("Enter the value associated with the key: ")
-        try:
-            value = int(value)
-        except ValueError:
-            pass
 
         dictionary[key] = value
 
