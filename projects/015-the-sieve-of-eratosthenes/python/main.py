@@ -13,6 +13,7 @@ def the_sieve_of_eratosthenes(limit):
 
 def main():
     limit = int(input("Enter a limit: "))
+
     print(the_sieve_of_eratosthenes(limit))
 
 
