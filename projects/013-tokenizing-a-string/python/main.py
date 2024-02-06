@@ -27,7 +27,6 @@ def get_token(expression):
         elif token != " ":
             tokens.append(token)
 
-
     return tokens
 
 
