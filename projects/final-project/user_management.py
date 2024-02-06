@@ -51,6 +51,9 @@ def user_interface() -> str:
         using_the_app = input("Press enter if you want to use the Cinema Booking Manager.\nPress q to close the app. ")
 
     user_info = get_user_info()
+    while not user_info:
+        print("Enter a valid email")
+        user_info = get_user_info()
 
     while using_the_app == "":
 
