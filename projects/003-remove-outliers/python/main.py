@@ -2,7 +2,7 @@
 When analysing data collected as part of a science experiment it may be desirable to remove the most extreme values
 before performing other calculations.
 
-Write a function that takes a list of values and an non-negative integer, n, as its parameters.
+Write a function that takes a list of values and a non-negative integer, n, as its parameters.
 The function should create a new copy of the list with the n largest elements and the n smallest elements removed.
 Then it should return the new copy of the list as the function’s only result.
 The order of the elements in the returned list does not have to match the order of the elements in the original list.
