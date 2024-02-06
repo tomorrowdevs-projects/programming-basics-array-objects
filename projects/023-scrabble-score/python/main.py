@@ -1,5 +1,5 @@
 def scrabble_score(message):
-    my_dict = {
+    letters = {
         1: ["A", "E", "I", "L", "N", "O", "R", "S", "T", "U"],
         2: ["D", "G"],
         3: ["B", "C", "M", "P"],
@@ -10,7 +10,7 @@ def scrabble_score(message):
     }
 
     total = 0
-    for key, value in my_dict.items():
+    for key, value in letters.items():
 
         for letter in message.upper():
 
