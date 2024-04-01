@@ -78,4 +78,6 @@ const symbolsKeyPad = {
 };
 
 const keypressesRequired = getTextMessaging(arrayUserMessage);
-console.log(keypressesRequired);
+console.log(
+    `For the user's input message "${userMessage}", the following key presses are required on the phone keypad: ${keypressesRequired} `
+);
