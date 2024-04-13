@@ -1,7 +1,6 @@
 'use strict';
-
 function getUniqueCharacters(userInput) {
-    const setUniqueCharacters = new Set(userInput.split('')); // Only unique values are retained in the set
+    const setUniqueCharacters = new Set(userInput.split(''));
 
     return setUniqueCharacters.size;
 }
