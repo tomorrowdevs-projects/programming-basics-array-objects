@@ -23,7 +23,8 @@ function checkAnagramms(firstStr, secondStr) {
     }
 }
 
-let firstStr = prompt('Enter something').toLowerCase();
-let secondStr = prompt('Enter something').toLowerCase();
+// Main programm
+const firstStr = prompt('Enter something').toLowerCase();
+const secondStr = prompt('Enter something').toLowerCase();
 const result = checkAnagramms(firstStr, secondStr);
 console.log(result);
