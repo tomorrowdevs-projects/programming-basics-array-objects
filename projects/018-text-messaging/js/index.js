@@ -1,4 +1,4 @@
-'use strict';
+const prompt = require('prompt-sync')();
 
 const arrayUserMessage = [
     ...prompt(
@@ -21,30 +21,39 @@ const obj = {
     0: [' '],
 };
 
-const emptyArr = [];
-
-for (const [key, value] of Object.entries(obj)) {
-    for (let i = 0; i < arrayUserMessage.length; i++) {
-        const index = value.indexOf(arrayUserMessage[i]);
-        if (value.includes(arrayUserMessage[[i]])) {
-            `${[key.repeat(index)].toString()}`;
-            if (
-                [key.repeat(index)].toString() >= 22 &&
-                [key.repeat(index)].toString() <= 99999999
-            ) {
-                console.log(`${[key.repeat(Math.ceil(index / 2))].toString()}`);
-            } else if (
-                [key.repeat(index)].toString() >= 2 &&
-                [key.repeat(index)].toString() <= 9
-            ) {
-                console.log(`${[key.repeat(index)].toString()}`);
-            } else {
-                console.log(`${[key.repeat(index)].toString()}1`);
-            }
-
-            emptyArr.push(key.repeat(index));
+// const emptyArr = [];
+// const element = 'B';
+const result = arrayUserMessage.map((element) => {
+    for (const [key, value] of Object.entries(obj)) {
+        if (value.includes(element)) {
+            const index = value.indexOf(element);
+            return key.toString().repeat(index + 1);
         }
     }
-}
-const digitMessage = emptyArr.toString().replaceAll(',', '');
-console.log(digitMessage);
+});
+console.log(result.join(''));
+
+// for (let i = 0; i < arrayUserMessage.length; i++) {
+//     const index = value.indexOf(arrayUserMessage[i]);
+//     if (value.includes(arrayUserMessage[[i]])) {
+//         `${[key.repeat(index)].toString()}`;
+//         if (
+//             [key.repeat(index)].toString() >= 22 &&
+//             [key.repeat(index)].toString() <= 99999999
+//         ) {
+//             console.log(`${[key.repeat(Math.ceil(index / 2))].toString()}`);
+//         } else if (
+//             [key.repeat(index)].toString() >= 2 &&
+//             [key.repeat(index)].toString() <= 9
+//         ) {
+//             console.log(`${[key.repeat(index)].toString()}`);
+//         } else {
+//             console.log(`${[key.repeat(index)].toString()}1`);
+//         }
+
+//         emptyArr.push(key.repeat(index));
+//     }
+// }
+
+// const digitMessage = emptyArr.toString().replaceAll(',', '');
+// console.log(digitMessage);

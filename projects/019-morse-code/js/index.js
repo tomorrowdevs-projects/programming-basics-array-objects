@@ -1,9 +1,8 @@
-'use strict';
-const inputMessage = prompt('Enter text to see Morse translated').toUpperCase();
+const prompt = require('prompt-sync')();
 
-const messageArray = inputMessage.split('');
-
-const morseCodeArray = [];
+const inputMessage = [
+    ...prompt('Enter text to see Morse translated').toUpperCase(),
+];
 
 const morseCodeDictionary = {
     A: '. -',
@@ -49,10 +48,12 @@ const morseCodeDictionary = {
     Ö: '- - - .',
     Ü: '. . - -',
 }; // Map characters to their corresponding Morse code
+const arrCode = inputMessage.map((element) => morseCodeDictionary[element]);
+console.log(arrCode);
 
-for (let i = 0; i < messageArray.length; i++) {
-    morseCodeArray.push(morseCodeDictionary[messageArray[i]]); // Translates each character of the text into Morse code and adds it to the Morse code array
-}
+// for (let i = 0; i < messageArray.length; i++) {
+//     morseCodeArray.push(morseCodeDictionary[messageArray[i]]); // Translates each character of the text into Morse code and adds it to the Morse code array
+// }
 
-let formattedMorseText = morseCodeArray.toString().replaceAll(',', '  ');
-console.log(formattedMorseText);
+// let formattedMorseText = morseCodeArray.toString().replaceAll(',', '  ');
+// console.log(formattedMorseText);
