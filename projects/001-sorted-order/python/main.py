@@ -3,10 +3,8 @@
 #Then it should display all of the values entered by the user (except for the 0) in ascending order, with one value appearing on each line. 
 #Use either the sort method or the sorted function to sort the array.
 
-import pprint
-
 array = []
-n = 1
+
 while True:
     numbers = int(input("Please input a numbe (input 0 if you want to end the code): "))
     array.append(numbers)
