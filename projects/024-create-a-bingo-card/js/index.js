@@ -33,3 +33,5 @@ const printBingoCard = (card) => {
     }
 };
 printBingoCard(bingoCard);
+module.exports = printBingoCard;
+// module.exports = printBingoCard;
