@@ -142,12 +142,12 @@ def Booking(PrjProgramDic,PrjId,SeatsNr,UserReservationDic):
     else:
         UserReservationDic[1]={'PrjId':PrjId,'Seats':BookedSeats}
 
-def CheckForOtherDate(Title,FilmOccurence,SeatsNr,PrjProgramDic):
+def CheckForOtherDate(Title,FilmOccurence,SeatsNr,PrjProgramDic,PrjId):
     if FilmOccurence[Title]['Occurence']>1:
         OtherId=FilmOccurence[Title]['Id']
         OtherPrjDic={}
         for Id in OtherId:
-            if SeatsNr<=len(PrjProgramDic[Id]['FreeSeats']):
+            if SeatsNr<=len(PrjProgramDic[Id]['FreeSeats']) and Id!=PrjId:
                 OtherPrjDic[Id]=PrjProgramDic[Id]
     
     if len(OtherPrjDic)>0:
@@ -352,6 +352,75 @@ def DeleteReservation(UserReservationDic,PrjProgramDic,ReservationId):
     PrjProgramDic[PrjId]['FreeSeats'].append(BookedSeats)
     print('Reservation deleted!')
 
+def ModifyReservation(UserReservationDic,PrjProgramDic,ReservationId,FilmOccurence):
+    operation=''
+    while operation!=0:
+        #ASKING FOR THE OPERATION TO PERFORM
+        print('You can perform these operations:\n- modify the number of seats [1]\n- modify the projection date [2]\n- exit [0]')
+        operation=input('Please, enter the number of the operation you want to perform:')
+        while not operation in ['0','1','2']:
+            operation=input('Wrong input, please retry:')
+        operation=int(operation)
+        PrjId=UserReservationDic[ReservationId]['PrjId']
+        Title=PrjProgramDic[PrjId]['Title']
+        if operation==1:
+            print('You want to add [1] or to delete seats [2]?')
+            operation=input('Please, enter the number of the operation you want to perform:')
+            while not operation in ['1','2']:
+                operation=input('Wrong input, please retry:')
+            operation=int(operation)
+        
+            SeatsNr=input('Please, enter the number of seats to add or delete:')
+            while not SeatsNr.isdigit():
+                SeatsNr=input('Only numeric values. Please, retry:')
+            SeatsNr=int(SeatsNr)
+
+            if operation==2:
+                if SeatsNr>=len(UserReservationDic[ReservationId]['Seats']):
+                    print('You entered a number of seats equal o greater than the number of the booked seats. Please, retry')
+                    SeatsNr=input('Please, enter the number of seats to add or delete:')
+                    while not SeatsNr.isdigit():
+                        SeatsNr=input('Only numeric values. Please, retry:')
+                    SeatsNr=int(SeatsNr)
+                SeatsToDelete=sample(UserReservationDic[ReservationId]['Seats'],SeatsNr)
+                PrjProgramDic[PrjId]['FreeSeats']=PrjProgramDic[PrjId]['FreeSeats']+SeatsToDelete
+                for Seat in SeatsToDelete:
+                    UserReservationDic[ReservationId]['Seats'].remove(Seat)
+                print('Reservation modified, here\'s a summary')
+                PrintUserReservation(PrjProgramDic,UserReservationDic,ReservationId)
+            else:
+                if len(PrjProgramDic[PrjId]['FreeSeats'])>=SeatsNr:
+                    SeatsToAdd=sample(PrjProgramDic[PrjId]['FreeSeats'],SeatsNr)
+                    for Seat in SeatsToAdd:
+                        PrjProgramDic[PrjId]['FreeSeats'].remove(Seat)
+                    UserReservationDic[ReservationId]['Seats']=UserReservationDic[ReservationId]['Seats']+(SeatsToAdd)
+                    print('Reservation modified, here\'s a summary')
+                    PrintUserReservation(PrjProgramDic,UserReservationDic,ReservationId)
+                else:
+                    print('Not enough free seats for the projection ID you selected.')
+        elif operation==2:
+            SeatsNr=len(UserReservationDic[ReservationId]['Seats'])
+            OtherPrj=CheckForOtherDate(Title,FilmOccurence,SeatsNr,PrjProgramDic,PrjId)
+            if OtherPrj!=None:
+                PrintPrjAlternative(OtherPrj)
+                NewPrjId=input('If you want to select one of these dates, input the relevant ID or, if you want to exit, enter 0:')
+                while not NewPrjId.isdigit():
+                    NewPrjId=input('Only numeric values, retry:')
+                NewPrjId=int(NewPrjId)
+                if NewPrjId!=0:
+                    while not NewPrjId in list(OtherPrj.keys()):
+                        NewPrjId=input('The id you entered is wrong. Please, retry:')
+                        NewPrjId=int(NewPrjId)
+                    PrjProgramDic[PrjId]['FreeSeats']=PrjProgramDic[PrjId]['FreeSeats']+UserReservationDic[ReservationId]['Seats']
+                    UserReservationDic[ReservationId]['Seats']=sample(PrjProgramDic[NewPrjId]['FreeSeats'],SeatsNr)
+                    UserReservationDic[ReservationId]['PrjId']=NewPrjId
+                    SeatsToDelete=UserReservationDic[ReservationId]['Seats']
+                    for Seat in SeatsToDelete:
+                        PrjProgramDic[NewPrjId]['FreeSeats'].remove(Seat)
+                    print('Reservation modified, here\'s a summary')
+                    PrintUserReservation(PrjProgramDic,UserReservationDic,ReservationId)
+            else:
+                print('Sorry, no alternatives, for this film.')
 
 def main():
     #GENERAZIONE DICTIONARY DELLE PRENOTAZIONI EFFETTUATE DALL'UTENTE
@@ -389,7 +458,7 @@ def main():
             PrjId=int(PrjId)
             while not PrjId in list(PrjProgramDic.keys()):
                 PrjId=input('The id you entered is wrong. Please, retry:')
-            
+                PrjId=int(PrjId)
             SeatsNr=input('Please, enter the number of seats to book:')
             while not SeatsNr.isdigit():
                 SeatsNr=input('Only numeric values. Please, retry:')
@@ -399,6 +468,7 @@ def main():
             if SeatsNr<=len(PrjProgramDic[PrjId]['FreeSeats']):
                 Booking(PrjProgramDic,PrjId,SeatsNr,UserReservationDic)
                 ReservationId=list(UserReservationDic.keys())[-1]
+                print('Here\'s your reservation')
                 PrintUserReservation(PrjProgramDic,UserReservationDic,ReservationId)
             else:
                 print('There are not enough free seats for the projection id selected, you can:\n- Main menu [1]\n- Search for the same film in other dates [2]\n- Exit [0]')
@@ -408,16 +478,16 @@ def main():
 
                 if Operation=='2':
                     Title=PrjProgramDic[PrjId]['Title']
-                    OtherPrjDic=CheckForOtherDate(Title,FilmOccurence,SeatsNr,PrjProgramDic)
+                    OtherPrjDic=CheckForOtherDate(Title,FilmOccurence,SeatsNr,PrjProgramDic,PrjId)
                     if OtherPrjDic!=None:
                         print('Here\'s some other dates for the film you choose!')
                         PrintPrjAlternative(OtherPrjDic)
                         PrjId=input('If you want to book for one of these dates, input the relevant ID or, if you want to exit, enter 0:')
                         while not PrjId.isdigit():
                             PrjId=input('Only numeric values, retry:')
-                            PrjId=int(PrjId)
+                        PrjId=int(PrjId)
                         if PrjId!=0:
-                            while not PrjId in list(PrjProgramDic.keys()):
+                            while not PrjId in list(OtherPrjDic.keys()):
                                 PrjId=input('The id you entered is wrong. Please, retry:')
                                 PrjId=int(PrjId)
                             Booking(PrjProgramDic,PrjId,SeatsNr,UserReservationDic)
@@ -426,8 +496,17 @@ def main():
                     else:
                         print('Sorry, no alternatives dates for the film you choose.')
         elif operation==2:
-            #MODIFICA PRENOTAZIONE
             PrintUserReservation(PrjProgramDic,UserReservationDic)
+            ReservationId=input('Please, enter the id of the reservation you want to modify:')
+            while not ReservationId.isdigit():
+                ReservationId=input('Only numeric values, retry:')
+            ReservationId=int(ReservationId)
+            while not ReservationId in list(UserReservationDic.keys()):
+                ReservationId=input('The id you entered is wrong. Please, retry:')
+                while not ReservationId.isdigit():
+                    ReservationId=input('Only numeric values, retry:')
+                ReservationId=int(ReservationId)
+            ModifyReservation(UserReservationDic,PrjProgramDic,ReservationId,FilmOccurence)
         elif operation==3:
             PrintUserReservation(PrjProgramDic,UserReservationDic)
             ReservationId=input('Please, enter the reservation id you want to delete:')
