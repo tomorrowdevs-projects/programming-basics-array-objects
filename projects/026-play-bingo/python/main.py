@@ -17,29 +17,27 @@ import random
 
 def main_bingo():
     counter = 0
-    numberofcalls = []
     randomnumber = random.sample(range(1, 76), 30)
 
     for num in randomnumber:
         for key in cartabingo:
             if num in cartabingo[key]:
                 cartabingo[key][cartabingo[key].index(num)] = 0
+                counter += 1
+            else: counter += 1
     for i in range(5):
         if all([cartabingo[key][i] == 0 for key in 'BINGO']):
             bingo = True
-            counter += 1
     for key in 'BINGO':
         if all([num == 0 for num in cartabingo[key]]):
             bingo = True
-            counter += 1
     if cartabingo['B'][0] == 0 and cartabingo['I'][1] == 0 and cartabingo['N'][2] == 0 and cartabingo['G'][3] == 0 and cartabingo['O'][4] == 0:
         bingo = True
-        counter += 1
     if cartabingo['B'][4] == 0 and cartabingo['I'][3] == 0 and cartabingo['N'][2] == 0 and cartabingo['G'][1] == 0 and cartabingo['O'][0] == 0:
         bingo = True
-        counter += 1
     bingo = False
     numberofcalls.append(counter)
+    counter = 0
     return(numberofcalls)
 
 cartabingo = {
@@ -50,6 +48,7 @@ cartabingo = {
     'O' : random.sample(range(61, 76), 5),
 }
 
+numberofcalls = []
 array = []
 for i in range(1, 16):
     array.append(f"B{i}")
@@ -63,6 +62,7 @@ for i in range(61, 76):
     array.append(f"O{i}")
 random.shuffle(array)
 
-main_bingo()
-numberofcalls = main_bingo()
-print(numberofcalls)
+for n in range(10):
+    main_bingo()
+    numberofcalls = main_bingo()
+    print(numberofcalls)
