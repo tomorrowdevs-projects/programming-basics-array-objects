@@ -1,23 +1,15 @@
 integers_list=[]
 
-is_valid_input=False
-while not(is_valid_input):
-    try:
-        integer=int(input("Enter an integer (0 to quit): "))
-        is_valid_input=True
-    except ValueError:
-        print("Invalid integer!")
+integer=1
 
 while integer!=0:
-    integers_list.append(integer)
+    try:        
+        integer=int(input("Enter an integer (0 to quit): "))
+        integers_list.append(integer)
 
-    is_valid_input=False
-    while not(is_valid_input):
-        try:
-            integer=int(input("Enter an integer (0 to quit): "))
-            is_valid_input=True
-        except ValueError:
-            print("Invalid integer!")
-
+    except ValueError:
+        print("Invalid integer!")
+        continue
+integers_list.pop()
 for integer in sorted(integers_list):
     print(integer)
